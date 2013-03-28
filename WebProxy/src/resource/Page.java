@@ -52,12 +52,20 @@ public class Page extends ResourceHandler {
 			
 			//String build = buildScript();
 			//doc.head().append(buildScript());
+			rewriteSDLC();
 			doc.head().append("<script type='text/javascript' src='/test/namefinder/namefinder.js'></script>");
-
 			html = doc.html();
 		}
 		closeResourceConnection();
 		return html;
+	}
+	
+	
+	private void rewriteSDLC(){
+		
+		doc.body().html(doc.body().html().replaceAll("\\bSDLC\\b", "CLDS"));
+		doc.body().html(doc.body().html().replaceAll("\\bsdlc\\b", "clds"));
+		
 	}
 
 	private String buildScript(){
