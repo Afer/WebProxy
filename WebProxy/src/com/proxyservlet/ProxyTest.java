@@ -50,7 +50,7 @@ public class ProxyTest extends HttpServlet {
 
 
 		String url = "http://www.sdlcpartners.com";
-		String newLink = request.getRequestURI().split("WebProxyLocal")[1];
+		String newLink = request.getRequestURI().split("WebProxy")[1];
 
 
 		Resource resourceHandler = ResoureFactory.getResourceInstance(url, newLink);

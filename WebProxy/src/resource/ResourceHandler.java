@@ -17,6 +17,7 @@ public abstract class ResourceHandler implements Resource {
 	
 	public ResourceHandler(String domain, String path){
 		this.domainName = domain;
+		this.resourceLocation = path;
 	}
 	
 	public boolean openResourceConnection(){

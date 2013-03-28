@@ -35,10 +35,18 @@ public class Page extends ResourceHandler {
 			for (Element src : media) {
 				src.attr("src", src.attr("abs:src"));
 			}
+			
+			for (Element link : links){
+				if (link.attr("href").charAt(0) == '/'){
+					link.attr("href", link.attr("href").substring(1));
+				}
+			}
 
 			for (Element a : aLinks) {
 				a.attr("href", "" + a.attr("href").substring(1));
 			}
+			
+			//doc.head().append(buildScript());
 
 			html = doc.html();
 		}
@@ -46,7 +54,17 @@ public class Page extends ResourceHandler {
 		return html;
 	}
 
-	
+	private String buildScript(){
+		
+		String buildString = "<script type='text/javascript'>";
+		
+		//TODO: get properties list of jscript files to inject
+		
+		
+		
+		
+		return buildString;
+	}
 
 
 
