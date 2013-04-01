@@ -47,7 +47,9 @@ public class Page extends ResourceHandler {
 			}
 
 			for (Element a : aLinks) {
-				a.attr("href", "" + a.attr("href").substring(1));
+				if (a.attr("href").charAt(0) == '/'){
+					a.attr("href", "" + a.attr("href").substring(1));
+				}
 			}
 			
 			//String build = buildScript();
