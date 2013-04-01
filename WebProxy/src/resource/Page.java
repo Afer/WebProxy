@@ -1,9 +1,5 @@
 package resource;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 
 import org.jsoup.Jsoup;
@@ -44,19 +40,26 @@ public class Page extends ResourceHandler {
 				if (link.attr("href").charAt(0) == '/'){
 					link.attr("href", link.attr("href").substring(1));
 				}
-			}
-
-			for (Element a : aLinks) {
-				a.attr("href", "" + a.attr("href").substring(1));
+		
+				if(link.attr("href").toString().contains("http://") == false ){
+					link.attr("href", "/WebProxyLocal/"+link.attr("href"));
+				}
 			}
 			
-			//String build = buildScript();
-			//doc.head().append(buildScript());
+			for (Element a : aLinks) {
+				
+				if (a.attr("href").charAt(0) == '/'){
+					a.attr("href", "" + a.attr("href").substring(1));
+				}
+				 
+				if(a.attr("herf").contains("http") == false ){
+					a.attr("href", "/WebProxyLocal/"+a.attr("href"));
+				}
+			}
 			rewriteSDLC();
 			doc.head().append("<script type='text/javascript' src='/test/namefinder/namefinder.js'></script>");
 			html = doc.html();
 		}
-		closeResourceConnection();
 		return html;
 	}
 	
@@ -68,32 +71,7 @@ public class Page extends ResourceHandler {
 		
 	}
 
-	private String buildScript(){
-		
-		String buildString = "<script type='text/javascript'>\n";
-		
-		/*//TODO: get properties list of jscript files to inject
-		try{
-			
-			FileReader fstream = new FileReader("C:/Users/Administrator/Desktop/namefinder/namefinder.js");
-			BufferedReader in = new BufferedReader(fstream);
-			String currentLine = "";
-			
-			while ((currentLine = in.readLine()) != null) {
-				buildString += currentLine + "\n";
-			}
-			
-			in.close();
-			fstream.close();
-			
-		}catch (Exception e){
-			System.out.println("ERROR Reading javascript files: " + e.getMessage());
-		}
-		
-		buildString += "</script>";*/
-		
-		return buildString;
-	}
+	
 
 
 
